@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WHATSAPP</title>
+    <style>
+        .from {
+            background-color: aquamarine;
+            margin-left: 19px;
+            border: 1px solid black;
+            border-radius: 15px;
+        }
+
+        body {
+            background-color: greenyellow;
+        }
+        h1{
+            margin-left: 300px;
+        }
+        .ok {
+            margin-left: 19px;
+        }
+
+        .oks {
+            margin-left: 35px;
+            background-color: green;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>ALL USERS DATA</h1>
+    <form action="/chats/new" method="GET">
+        <button type="submit" class="oks">Create Chat</button>
+    </form>
+    <% for(let chat of chats){ %>
+        <div class="from">
+            <p class="ok">From : <%= chat.from %>
+            </p>
+            <p class="ok">message : <%= chat.message %>
+                    <form method="get" action="/chats/<%= chat._id %>/edit"><button type="submit" class="oks">Edit chat </button>
+                    </form>
+                    <form method="post" action="/chats/<%= chat._id %>?_method=DELETE"><button type="submit" class="oks">Delete chat </button>
+                    </form>
+            </p>
+            <p class="ok">Recieved By : <%= chat.to %>
+            </p>
+            <p class="ok">Created at :<%= chat.createdAt.toString().split(" ")[4] %> </p>
+    
+    <p class = " ok">Date :<%= chat.createdAt.toString().split(" ").slice(1,4).join(" -")%>
+            </p>
+        </div>
+       
+
+        <hr>
+
+        <%} %>
+
+       
+</body>
+
+</html>
